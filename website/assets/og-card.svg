@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f4f1e9"/>
+  <path d="M0 515h1200" stroke="#183e5b" stroke-width="2"/>
+  <path d="M660 390c70-145 140 130 220 0 42-67 86-45 136-9" fill="none" stroke="#ef6a5b" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="890" cy="377" r="17" fill="#e9c85d"/>
+  <text x="86" y="202" font-family="Arial, sans-serif" font-size="33" letter-spacing="6" fill="#215d83">PHYSICS ADAPTATION BENCHMARK</text>
+  <text x="80" y="330" font-family="Arial, sans-serif" font-weight="700" font-size="102" fill="#142c3d">PACE-Bench</text>
+  <text x="86" y="420" font-family="Arial, sans-serif" font-size="38" fill="#53636c">Physics Adaptation via Code Evolution</text>
+  <text x="86" y="568" font-family="monospace" font-size="25" fill="#53636c">36 TASKS  ·  144 ADAPTATION PAIRS  ·  6 DOMAINS</text>
+</svg>

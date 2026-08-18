@@ -1,0 +1,14 @@
+Box2D>=2.3.10,<2.4
+Pillow>=10,<12
+pygame>=2.5,<3
+openai>=1.40,<3
+accelerate>=1.0,<2
+peft>=0.13,<1
+PyYAML>=6,<7
+safetensors>=0.4,<1
+torch>=2.2,<3
+transformers>=4.45,<5
+matplotlib>=3.8,<4
+
+# Register this checkout and its `pace-bench` command locally; no PyPI package is used.
+-e .

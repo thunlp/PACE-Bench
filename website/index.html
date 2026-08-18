@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PACE-Bench evaluates whether agents can adapt executable physical designs when the world changes." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="PACE-Bench" />
+    <meta property="og:description" content="Physics Adaptation via Code Evolution in Dynamic Environments." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./assets/og-card.svg" />
+    <title>PACE-Bench · Physics Adaptation via Code Evolution</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./data/leaderboard.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="PACE-Bench home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>PACE-Bench</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#benchmark">Benchmark</a>
+        <a href="#findings">Findings</a>
+        <a href="#tasks">Tasks</a>
+      </nav>
+      <a class="github-link" href="https://github.com/thunlp/PACE-Bench" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </header>
+
+    <main id="main">
+      <section class="hero page-width" id="top">
+        <p class="kicker">
+          <span class="kicker-rule" aria-hidden="true"></span>
+          <span class="kicker-text"><b>P</b>hysics <b>A</b>daptation via <b>C</b>ode <b>E</b>volution</span>
+          <span class="kicker-rule" aria-hidden="true"></span>
+        </p>
+        <h1>PACE<span>-Bench</span></h1>
+        <p class="hero-question">Can an agent redesign for a world that changed?</p>
+        <p class="hero-summary">
+          A benchmark for self-evolving agents that must adapt executable physical
+          designs after hidden environment shifts.
+        </p>
+        <div class="hero-links">
+          <a class="button primary" href="#leaderboard">Leaderboard</a>
+          <a class="button" href="https://arxiv.org/abs/2608.14441" target="_blank" rel="noreferrer">Paper ↗</a>
+          <a class="button" href="https://github.com/thunlp/PACE-Bench" target="_blank" rel="noreferrer">Code ↗</a>
+          <a class="button" href="https://huggingface.co/datasets/YuhaoZhan/PACE-Bench" target="_blank" rel="noreferrer">Hugging Face ↗</a>
+        </div>
+        <dl class="benchmark-stats">
+          <div><dt>36</dt><dd>Tasks</dd></div>
+          <div><dt>6</dt><dd>Physics domains</dd></div>
+          <div><dt>144</dt><dd>Adaptation pairs</dd></div>
+          <div><dt>20</dt><dd>Attempts per run</dd></div>
+        </dl>
+      </section>
+
+      <section class="section leaderboard-section" id="leaderboard">
+        <div class="page-width">
+          <header class="section-header">
+            <p class="section-kicker">Results</p>
+            <h2>Leaderboard</h2>
+            <p>
+              Full-benchmark performance across 36 tasks and four target stages.
+              Higher is better.
+            </p>
+          </header>
+
+          <div class="result-summary" aria-label="Headline benchmark results">
+            <article><strong>35.9%</strong><span>Best Pass@2</span><small>Reflexion · Qwen3-14B</small></article>
+            <article><strong>28.0</strong><span>Best Score@2</span><small>Reflexion · Qwen3-14B</small></article>
+            <article><strong>11</strong><span>Evaluated approaches</span><small>Four self-evolution paradigms</small></article>
+          </div>
+
+          <div class="leaderboard-card">
+            <div class="leaderboard-toolbar">
+              <div class="metric-switch" role="group" aria-label="Metric">
+                <button class="is-active" type="button" data-metric="pass">Pass@2</button>
+                <button type="button" data-metric="score">Score@2</button>
+              </div>
+              <label><span>Backbone</span>
+                <select id="model-select">
+                  <option value="14B">Qwen3-14B</option>
+                  <option value="8B">Qwen3-8B</option>
+                  <option value="4B">Qwen3-4B</option>
+                </select>
+              </label>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr>
+                  <th scope="col">Rank</th><th scope="col">Method</th><th scope="col">Paradigm</th>
+                  <th scope="col" id="metric-label">Pass@2</th>
+                  <th scope="col" class="bar-column"><span class="sr-only">Relative performance</span></th>
+                </tr></thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
+            </div>
+            <p class="table-note">
+              Two independent runs per pair; up to 20 verifier interactions per trajectory.
+            </p>
+          </div>
+
+          <div class="efficiency-section">
+            <div class="efficiency-heading">
+              <div>
+                <p class="section-kicker">Cost-normalized view</p>
+                <h3>Score gained per wall-clock hour</h3>
+              </div>
+              <p>Kinematics subset · 20-attempt budget · Score/Hr ↑</p>
+            </div>
+            <div class="efficiency-card">
+              <div class="table-wrap">
+                <table class="efficiency-table">
+                  <thead><tr>
+                    <th scope="col">Method</th><th scope="col">Paradigm</th>
+                    <th scope="col">4B</th><th scope="col">8B</th><th scope="col">14B</th>
+                  </tr></thead>
+                  <tbody>
+                    <tr class="efficiency-best"><td>Tree-of-Thoughts</td><td>Search</td><td>45.7</td><td>46.4</td><td>57.8</td></tr>
+                    <tr><td>Reflexion</td><td>Context</td><td>29.6</td><td>14.7</td><td>25.4</td></tr>
+                    <tr><td>Vanilla</td><td>Context</td><td>27.5</td><td>23.2</td><td>28.0</td></tr>
+                    <tr><td>ACE</td><td>Memory</td><td>18.4</td><td>19.8</td><td>17.5</td></tr>
+                    <tr><td>CodeEvolve</td><td>Search</td><td>7.5</td><td>4.1</td><td>3.7</td></tr>
+                    <tr><td>Self-Refine</td><td>Context</td><td>2.0</td><td>2.9</td><td>3.6</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="efficiency-conclusion">
+                <strong>ToT is the efficiency leader at every scale.</strong>
+                <p>
+                  Reflexion leads absolute Pass@2, but ToT converts wall-clock time into
+                  score most efficiently. More self-evolution compute does not reliably
+                  produce better cost-normalized performance.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section benchmark-section" id="benchmark">
+        <div class="page-width">
+          <header class="section-header">
+            <p class="section-kicker">How it works</p>
+            <h2>Adapt a working design to a changed world</h2>
+            <p>
+              The source solution passes its original environment and fails the target.
+              The agent sees execution feedback, revises the code, and tries to recover success.
+            </p>
+          </header>
+
+          <div class="protocol-points">
+            <article><b>01</b><strong>Non-trivial</strong><span>The source design fails after mutation.</span></article>
+            <article><b>02</b><strong>Change-hidden</strong><span>The mutation itself is not disclosed.</span></article>
+            <article><b>03</b><strong>Verifier-grounded</strong><span>Every revision is tested by execution.</span></article>
+            <article><b>04</b><strong>Solvable</strong><span>Every target has a verified reference.</span></article>
+          </div>
+
+          <div class="demo-block">
+            <div class="demo-heading">
+              <div><span>S-01</span><strong>Bridge Construction</strong></div>
+              <p>One source-to-target adaptation</p>
+            </div>
+            <div class="adaptation-demo" aria-label="Adaptation protocol animation">
+              <div class="demo-viewport">
+                <img id="protocol-image" src="./assets/demo/source-initial-pass.gif" alt="Bridge construction simulation" />
+                <div class="code-evolution" id="code-evolution" aria-hidden="true">
+                  <p>Revise the mechanism</p>
+                  <pre><code><em>−</em> panels = 6
+<strong>+</strong> panels = 16
+<em>−</em> shallow truss
+<strong>+</strong> deep redundant bracing</code></pre>
+                </div>
+                <div class="demo-result" id="demo-result">PASS</div>
+              </div>
+              <div class="demo-progress" id="demo-progress" role="tablist" aria-label="Protocol stages">
+                <button class="is-active" type="button" data-step="0"><span>01</span><b>Source passes</b></button>
+                <button type="button" data-step="1"><span>02</span><b>Target fails</b></button>
+                <button type="button" data-step="2"><span>03</span><b>Self-evolve</b></button>
+                <button type="button" data-step="3"><span>04</span><b>Target passes</b></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section findings-section" id="findings">
+        <div class="page-width">
+          <header class="section-header">
+            <p class="section-kicker">Key findings</p>
+            <h2>Why today’s agents still fail to adapt</h2>
+            <p>PACE-Bench exposes four bottlenecks behind the headline scores.</p>
+          </header>
+
+          <article class="finding finding-main">
+            <div class="finding-copy">
+              <span>01 · Grounding</span>
+              <h3>More reflection is not more evidence.</h3>
+              <p>
+                Self-Refine makes repeated internal edits before returning to the simulator.
+                At 14B, it drops from Vanilla’s 32.0% Pass@2 to 7.1%. Reflexion reaches
+                35.9% by analyzing a verified failure before the next revision.
+              </p>
+              <blockquote>Without new environmental evidence, self-correction can amplify the same wrong assumption.</blockquote>
+            </div>
+            <figure>
+              <img src="./assets/insights/main-results.png" alt="Main PACE-Bench results across methods and model scales" loading="lazy" />
+              <figcaption>Full-benchmark results. Higher is better.</figcaption>
+            </figure>
+          </article>
+
+          <div class="finding-grid">
+            <article class="finding">
+              <div class="finding-copy">
+                <span>02 · Search behavior</span>
+                <h3>Self-evolution oscillates between fixation and wandering.</h3>
+                <p>
+                  Memory can keep retrieving an obsolete design; broad search can escape it
+                  but fail to refine any branch. ToT cuts fixation to 0.3%, yet 50.2% of its
+                  failures stagnate. CodeEvolve shows the reverse pattern, with 66.3% fixation.
+                </p>
+              </div>
+              <figure>
+                <img src="./assets/insights/error-taxonomy.png" alt="Failure taxonomy by self-evolving method" loading="lazy" />
+                <figcaption>Failure composition; bars describe failed runs, not absolute failure rates.</figcaption>
+              </figure>
+            </article>
+            <article class="finding">
+              <div class="finding-copy">
+                <span>03 · Scaling</span>
+                <h3>Better reasoning does not remove combinatorial design search.</h3>
+                <p>
+                  From 4B to 14B, Kinematics improves only 1.9 points. At 14B, Dynamics
+                  remains at 14.2% Pass@2 while Exotic Physics reaches 38.5%. Some mechanisms
+                  require a new topology—not a more polished explanation of the old one.
+                </p>
+              </div>
+              <figure>
+                <img src="./assets/insights/domain-scaling.png" alt="Pass rates by model scale and physics category" loading="lazy" />
+                <figcaption>Pass@2 by model scale and domain.</figcaption>
+              </figure>
+            </article>
+          </div>
+
+          <article class="knowledge-gap">
+            <div>
+              <span>04 · Information</span>
+              <h3>More information is not uniformly helpful.</h3>
+              <p>Its value depends on whether the method can use new evidence to overturn an obsolete hypothesis.</p>
+              <small>Both analyses use selected methods on the Statics + Kinematics subsets; neither is a full-benchmark comparison.</small>
+            </div>
+            <div class="information-results">
+              <article>
+                <b>Exact parameters</b>
+                <p>Best hidden <strong>17.9%</strong> · best exposed <strong>14.6%</strong></p>
+                <span>Knowing what changed does not solve how to redesign.</span>
+              </article>
+              <article>
+                <b>Video feedback · 14B</b>
+                <p>Reflexion <strong>40.9 → 27.3</strong> · ExpeL <strong>13.6 → 36.4</strong></p>
+                <span>Fresh visual evidence hurts context-based revision here, but helps memory overcome stale experience.</span>
+              </article>
+            </div>
+          </article>
+
+          <div class="research-agenda">
+            <p>What should improve next?</p>
+            <div>
+              <article><b>Verify</b><span>Ground every revision in execution.</span></article>
+              <article><b>Forget</b><span>Reject memories built on obsolete mechanisms.</span></article>
+              <article><b>Converge</b><span>Explore structural alternatives, then commit.</span></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tasks-section" id="tasks">
+        <div class="wide-width">
+          <header class="section-header">
+            <p class="section-kicker">Task suite</p>
+            <h2>36 executable worlds</h2>
+            <p>Six physics domains. Every initial reference solution plays automatically.</p>
+          </header>
+          <div class="task-filters" id="task-filters" role="group" aria-label="Filter tasks">
+            <button class="is-active" type="button" data-category="all">All 36</button>
+            <button type="button" data-category="S">Statics</button>
+            <button type="button" data-category="K">Kinematics</button>
+            <button type="button" data-category="D">Dynamics</button>
+            <button type="button" data-category="F">Fluid</button>
+            <button type="button" data-category="C">Control</button>
+            <button type="button" data-category="E">Exotic</button>
+          </div>
+          <div class="task-grid" id="task-grid"></div>
+        </div>
+      </section>
+
+      <section class="closing page-width">
+        <h2>Build for the world you have.<br />Adapt to the world you get.</h2>
+        <a class="button primary" href="https://github.com/thunlp/PACE-Bench" target="_blank" rel="noreferrer">Explore PACE-Bench ↗</a>
+      </section>
+
+      <section class="citation-section page-width" id="citation">
+        <header class="section-header">
+          <p class="section-kicker">Reference</p>
+          <h2>Citation</h2>
+        </header>
+        <pre class="citation-box"><code>@misc{zhan2026pacebenchbenchmarkingphysicsadaptation,
+      title={PACE-Bench: Benchmarking Physics Adaptation via Code Evolution in Dynamic Environments},
+      author={Yuhao Zhan and Bingxiang He and Zecong Tang and Chaojun Xiao},
+      year={2026},
+      eprint={2608.14441},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2608.14441},
+}</code></pre>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>PACE-Bench</span></a>
+      <p>Physics Adaptation via Code Evolution · 2026</p>
+      <a href="https://github.com/thunlp/PACE-Bench" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </footer>
+
+    <dialog class="task-dialog" id="task-dialog">
+      <button class="dialog-close" type="button" aria-label="Close task details">×</button>
+      <div class="dialog-media"><img id="dialog-image" alt="" /></div>
+      <div class="dialog-copy">
+        <p class="section-kicker">Initial reference solution</p>
+        <h2 id="dialog-title"></h2>
+        <p id="dialog-category"></p>
+        <dl>
+          <div><dt>Source</dt><dd>Initial environment</dd></div>
+          <div><dt>Targets</dt><dd>4 mutated stages</dd></div>
+          <div><dt>Budget</dt><dd>20 attempts</dd></div>
+        </dl>
+      </div>
+    </dialog>
+  </body>
+</html>

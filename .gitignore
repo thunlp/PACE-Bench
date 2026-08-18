@@ -1,0 +1,86 @@
+# Private manuscript and personal agent state
+paper/
+evaluation_old/
+.claude/
+.codex/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+local_config.*
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python caches, environments, and packaging
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
+.venv/
+.venv*/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Coverage and test output
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+junit.xml
+
+# Benchmark/model output
+outputs/
+evaluation_results*/
+training_log/
+logs/
+wandb/
+runs/
+checkpoints/
+models/
+model_cache/
+.cache/
+.conda/
+.conda-pkgs/
+.cache/huggingface/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+
+# Reproducible simulator artifacts
+*.gif
+*.pdf
+middle_moment.*
+renderer_tmp*/
+frames/
+tmp/
+temp/
+.DS_Store
+
+# Keep the local website and deployment workflow out of this repository.
+website/
+.github/workflows/
+run_pace_vllm.sh
+
+# Third-party method checkouts and local adapters use separate environments.
+methods/
+
+# README demo asset.
+!assets/s01-adaptation.gif
