@@ -153,6 +153,11 @@ tbody tr:first-child td:first-child, tbody tr:first-child .metric-value { color:
 .score-bar i { position: absolute; inset: 0 auto 0 0; width: var(--score); background: var(--navy); }
 tbody tr:first-child .score-bar i { background: var(--accent); }
 .table-note { margin: 0; padding: 12px 16px; color: var(--muted); background: var(--soft); font-size: 11px; text-align: center; }
+.frontier-card { overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: white; }
+.frontier-table td:first-child { width: auto; color: var(--ink); font-size: 13px; font-weight: 700; }
+.frontier-table th:nth-child(n+2), .frontier-table td:nth-child(n+2) { width: 22%; text-align: right; }
+.frontier-table td:nth-child(n+3) { color: var(--ink); font-weight: 700; }
+.frontier-table tr:last-child td { border-bottom: 0; }
 
 .efficiency-section { margin-top: 64px; }
 .efficiency-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 15px; }

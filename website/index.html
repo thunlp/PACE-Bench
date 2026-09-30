@@ -108,6 +108,39 @@
           <div class="efficiency-section">
             <div class="efficiency-heading">
               <div>
+                <p class="section-kicker">Frontier models</p>
+                <h3>Vanilla frontier LLM results</h3>
+              </div>
+              <p>Full benchmark · 144 eval units · Higher is better</p>
+            </div>
+            <div class="frontier-card">
+              <div class="table-wrap">
+                <table class="frontier-table">
+                  <thead><tr>
+                    <th scope="col">Model</th><th scope="col">Pass@2</th>
+                    <th scope="col">Score@2</th>
+                  </tr></thead>
+                  <tbody>
+                    <tr><td>Qwen3.8-Max</td><td>86.11%</td><td>86.11</td></tr>
+                    <tr><td>GLM-5.2</td><td>85.42%</td><td>85.42</td></tr>
+                    <tr><td>DeepSeek-V4-Pro</td><td>82.64%</td><td>82.85</td></tr>
+                    <tr><td>GPT-5.5</td><td>82.64%</td><td>83.04</td></tr>
+                    <tr><td>DeepSeek-V4-Flash</td><td>78.47%</td><td>78.47</td></tr>
+                    <tr><td>Kimi-K3</td><td>77.78%</td><td>77.35</td></tr>
+                    <tr><td>Claude Opus 5</td><td>77.08%</td><td>76.29</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="table-note">
+                Vanilla, run 1. The observed single-run value is reported as Pass@2 / Score@2;
+                missing eval units are zero-scored against the fixed denominator of 144.
+              </p>
+            </div>
+          </div>
+
+          <div class="efficiency-section">
+            <div class="efficiency-heading">
+              <div>
                 <p class="section-kicker">Cost-normalized view</p>
                 <h3>Score gained per wall-clock hour</h3>
               </div>
